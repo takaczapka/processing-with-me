@@ -4,9 +4,17 @@ class Ball {
   float x, y;
   float directionX, directionY;
   int rad = 50;
-  Ball[] otherBalls;
+  ColorCircle[] circles;
 
-  Ball(float x, float y, float speed, Ball[] otherBalls) {
+  Ball(float x, float y, float speed) {
+    
+    circles = new ColorCircle[] {
+      new ColorCircle(-15 + random(20), -15 + random(30), 250, 10, 194),
+      new ColorCircle(-15 + random(20), -15 + random(30), 60, 224, 86),
+      new ColorCircle(-15 + random(20), -15 + random(30), 10, 196, 250),
+      new ColorCircle(0, 0, 0, 0, 0)
+    };
+    
     
     if (x + rad >= width || x - rad <= 0) {
       this.x = rad + 1;
@@ -21,7 +29,6 @@ class Ball {
     }
     
     this.speed = speed;
-    this.otherBalls = otherBalls;
     
     directionX = random(1);
     directionY = random(1);
@@ -41,6 +48,24 @@ class Ball {
   }
   
   void draw() {
-    ellipse(x, y, rad * 2, rad * 2);
+    int opacity = 180;
+    
+    for (ColorCircle c : circles) {
+      fill(c.r, c.g, c.b, opacity);      
+      ellipse(x + c.x, y + c.y, rad * 2, rad * 2); 
+    }
+  }
+}
+
+class ColorCircle {
+  float x, y;
+  int r,g,b;
+  
+  ColorCircle(float x, float y, int r, int g, int b) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.g = g;
+    this.b = b;
   }
 }

@@ -5,7 +5,7 @@ void setup() {
   size(800, 500);
  
   for (int i = 0; i < numberOfBalls; i++) {
-    balls[i] = new Ball((int(random(width))), (int(random(height))), 1 + random(5), balls);
+    balls[i] = new Ball((int(random(width))), (int(random(height))), 1 + random(5));
   }
 }
 
