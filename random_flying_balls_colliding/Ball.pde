@@ -55,6 +55,7 @@ class Ball {
     }
   }
 
+  // TODO improve with different masses, etc. + use better algorithm https://gamedevelopment.tutsplus.com/tutorials/when-worlds-collide-simulating-circle-circle-collisions--gamedev-769
   void collide() {
     for (int i = id + 1; i < numBalls; i++) {
       Ball other = others[i];
