@@ -7,12 +7,14 @@ void setup() {
 }
 
 void draw() {
-  frameRate(1);
+  frameRate(3);
    background(255);
 
    fill(245, 181, 17);
 
-   ellipse(width/2, height/2, 100, 100);
+   float x = 2 * width/3;
+   float y = height/3;
+   ellipse(x, y, 100, 100);
    
    float minRayLen = 50 + mouseX;
    float yRatio = mouseY / (float) height;
@@ -20,7 +22,7 @@ void draw() {
    if (yRatio != 0) maxStep = PI / (64 * yRatio);
    if (maxStep == 0) maxStep = PI/8;
    
-   rays(width / 2, height / 2, minRayLen, maxStep);
+   rays(x, y, minRayLen, maxStep);
 }
 
 void rays(float x, float y, float minRayLen, float maxStep) {
