@@ -6,11 +6,21 @@ void setup() {
 void draw() {
   background(172);
 
-  //scale(0.9, 0.9);
+  // Angles for sin() and cos() start at 3 o'clock;
+  // subtract HALF_PI to make them start at the top
+  float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
+  float m = map(minute(), 0, 60, 0, TWO_PI) - HALF_PI; 
+  float h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
+
   translate(width/2, height/2);
 
   // zipherblat
-  pushMatrix();
+
+  // "button" at the center
+  fill(0);
+  noStroke();
+  ellipse(0, 0, 15, 15);
+
   scale(0.9, 0.9);
   fill(255);
   for (int i = 0; i <= 59; i++) {
@@ -23,40 +33,19 @@ void draw() {
     }
   }
 
-  popMatrix();
-
-  // get the current time
-  int s = second();
-  int m = minute();
-  int h = hour();
-
-  // draw the seconds hand
-  pushMatrix();
-  rotate(radians(map(s, 0, 60, 0, 360)));
+  // seconds
   stroke(70, 70, 70);
   strokeWeight(1);
-  line(0, 0, 0, -210);
-  popMatrix();
+  line(0, 0, cos(s) * 220, sin(s) * 220);
 
-  // draw the minutes hand
-  pushMatrix();
-  rotate(radians(map(m, 0.0, 60.0, 0.0, 360.0)));
+  // minutes
   stroke(60, 60, 61);
   strokeWeight(5);
-  line(0, 0, 0, -200);
-  popMatrix();
+  line(0, 0, cos(m) * 210, sin(m) * 210);
 
-  // draw the hours hand
-  pushMatrix();
+  // hours
   if (h > 12) h -= 12;
-  rotate(radians(map(h + m / 60.0, 0.0, 12, 0.0, 360.0)));
-  strokeWeight(5);
-  stroke(0, 0, 0);
-  line(0, 0, 0, -100);
-  popMatrix();
-
-  // "button" at the center
-  fill(0);
-  noStroke();
-  ellipse(0, 0, 15, 15);
+  //rotate(radians(map(h + m / 60.0, 0.0, 12, 0.0, 360.0)));
+  strokeWeight(7);
+  line(0, 0, cos(h) * 100, sin(h) * 100);
 }

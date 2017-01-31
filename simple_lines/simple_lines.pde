@@ -20,6 +20,6 @@ void mousePressed() {
 
 void keyTyped() {
   if (key == 's') {
-    save("simple-lies-" + System.currentTimeMillis());
+    save(this.getClass().getSimpleName() + "-" + System.currentTimeMillis());
   }
 }
