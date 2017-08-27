@@ -1,5 +1,4 @@
 class Ball {
-  // this is center x, y of the ball
   float x, y;
   PVector direction;
   int size = 16;

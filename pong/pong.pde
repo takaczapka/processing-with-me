@@ -15,8 +15,6 @@ void setup() {
   size(800, 500);
   game = new Game();
   
-  // NOTE: this changes the way we do calculations and collision detection!  
-  rectMode(CENTER);
   noStroke();
 }
 
@@ -44,6 +42,8 @@ void keyPressed() {
     game.moveDownPlayer1();
   } else if (key == 'r') {
     game.newBall();
+  } else if (key == ' ') {
+    game.toggleGameState();
   }
 }
 
