@@ -9,11 +9,14 @@
 //   to reenable
 //      defaults write -g ApplePressAndHoldEnabled -bool true
 
+// Sketch / Import Library / Sound
+import processing.sound.*;
+
 Game game;
 
 void setup() {
   size(800, 500);
-  game = new Game();
+  game = new Game(this);
   
   noStroke();
 }

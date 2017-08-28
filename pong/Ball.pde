@@ -4,9 +4,10 @@ class Ball {
   int size = 16;
   float speed = 3;
   float accelerationRate = 0.005;
+  Sounds sounds;
 
-
-  public Ball(float x, float y) {
+  public Ball(Sounds sounds, float x, float y) {
+    this.sounds = sounds;
     this.x = x;
     this.y = y;
     
@@ -27,7 +28,8 @@ class Ball {
     this.y = nextY();
 
     // does it hit top or bottom? if so, change direction.y
-    if (this.y + (size/2) >= height || this.y - (size/2) <= 0) {
+    if (this.y + size >= height || this.y <= 0) {
+      sounds.playPing();
       direction.y *= -1;
     }
   }

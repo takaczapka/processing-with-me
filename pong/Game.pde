@@ -6,20 +6,23 @@ class Game {
   Player player1 = new Player(Side.LEFT);
   Player player2 = new Player(Side.RIGHT);
   Ball ball;
+  Sounds sounds;
   boolean isPaused;
 
-  public Game() {
+  public Game(PApplet application) {
+    sounds = new Sounds(application);
     newBall();
   }
 
   void newBall() {
-    ball = new Ball(400, 250);
+    ball = new Ball(sounds, 400, 250);
   }
 
   void tick() {
     if (!isPaused) {
       if (player1.willHit(ball) || player2.willHit(ball)) {
         ball.bounceOffPlayer();
+        sounds.playPong();
       }
 
       if (ball.isOffTheScreen()) {
@@ -28,6 +31,7 @@ class Game {
         } else {
           player1.addScore();
         }
+        sounds.playWin();
         newBall();
       }
 
